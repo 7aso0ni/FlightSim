@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form2 : Form
+    public partial class Register : Form
     {
-        public Form2()
+        public Register()
         {
             InitializeComponent();
         }
@@ -22,10 +22,10 @@ namespace WindowsFormsApp1
             this.Hide();
 
             // Check if Form1 is already open
-            Form1 form1 = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+            Login form1 = Application.OpenForms.OfType<Login>().FirstOrDefault();
             if (form1 == null)
             {
-                form1 = new Form1();
+                form1 = new Login();
                 form1.Show();
             }
             else
