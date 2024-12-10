@@ -28,5 +28,22 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkToRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // hide the current form when link is clicked
+            this.Hide();
+
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+
+            // show the current form when the second form is closed
+            this.Show();
+        }
     }
 }
