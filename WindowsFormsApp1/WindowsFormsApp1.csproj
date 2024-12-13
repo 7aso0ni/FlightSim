@@ -78,6 +78,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="models\Employer.cs" />
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
