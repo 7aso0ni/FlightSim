@@ -126,7 +126,7 @@
             this.linkToRegister.Text = "go to register";
             this.linkToRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkToRegister_LinkClicked);
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,8 +141,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.UsernameTextBox);
-            this.Name = "Form1";
+            this.Name = "Login";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -119,5 +119,10 @@ namespace WindowsFormsApp1
             // show the current form when the second form is closed
             this.Show();
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
