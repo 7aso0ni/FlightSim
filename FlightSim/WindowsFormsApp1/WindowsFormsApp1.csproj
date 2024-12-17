@@ -81,7 +81,9 @@
     <Compile Include="EmployerReservation.Designer.cs">
       <DependentUpon>EmployerReservation.cs</DependentUpon>
     </Compile>
+    <Compile Include="models\Booking.cs" />
     <Compile Include="models\Flight.cs" />
+    <Compile Include="models\TravelerPayment.cs" />
     <Compile Include="TravelerPayment.cs">
       <SubType>Form</SubType>
     </Compile>

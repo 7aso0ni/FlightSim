@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
             {
             List<Flight> flights = new List<Flight>();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
 
                 conn.Open();
 
@@ -146,6 +146,17 @@ namespace WindowsFormsApp1
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bookFlightButton_Click(object sender, EventArgs e)
+        {
+            TravelerPayment tp = new TravelerPayment();
+            tp.ShowDialog();
+        }
+
+        private void flightDisplay_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
