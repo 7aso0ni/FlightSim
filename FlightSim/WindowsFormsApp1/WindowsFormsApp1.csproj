@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FlightDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="models\Flight.cs" />
     <Compile Include="TravelerPayment.cs">
       <SubType>Form</SubType>
     </Compile>

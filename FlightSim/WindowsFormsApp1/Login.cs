@@ -50,19 +50,19 @@ namespace WindowsFormsApp1
                 case "admin":
                     this.Hide();
                     AdminHome admin = new AdminHome();
-                    admin.Show();
+                    admin.ShowDialog();
                     this.Show();
                     break;
                 case "employer":
                     this.Hide();
                     EmployerHome emp = new EmployerHome();
-                    emp.Show();
+                    emp.ShowDialog();
                     this.Show();
                     break;
                 case "traveler":
                     this.Hide();
                     TravelerHome trv = new TravelerHome();
-                    trv.Show();
+                    trv.ShowDialog();
                     this.Show();
                     break;
             }
