@@ -81,17 +81,15 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            Traveler traveler = new Traveler(username, password, email, "traveler", name, passportNumber, age);
 
             if (VerifyRegister(username, password, email, name, passportNumber, age))
             {
-                // if everything is good to go save the traveler instance
-                Traveler.TravelerInstance = traveler;
+
 
                 // navigate to the traveler home page
                 this.Hide();
                 TravelerHome travelerHome = new TravelerHome();
-                travelerHome.Show();
+                travelerHome.ShowDialog();
                 this.Show();
             }
 
@@ -129,16 +127,21 @@ namespace WindowsFormsApp1
                 int userId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 // insert the traveler into the database
-                cmd.CommandText = "INSERT INTO [dbo].[Traveler] (name, passport_number, age, user_id) VALUES (@name, @passportNumber, @age, @userId)";
+                cmd.CommandText = "INSERT INTO [dbo].[Traveler] (name, passport_number, age, user_id) VALUES (@name, @passportNumber, @age, @userId); SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@passportNumber", passportNumber);
                 cmd.Parameters.AddWithValue("@age", age);
                 cmd.Parameters.AddWithValue("@userId", userId);
 
-                cmd.ExecuteNonQuery();
+                int travelerId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 conn.Close();
                 MessageBox.Show("User registered successfully");
+
+                Traveler traveler = new Traveler(travelerId, username, password, email, "traveler", name, passportNumber, age);
+                // if everything is good to go save the traveler instance
+                Traveler.TravelerInstance = traveler;
+
                 return true;
             }
             catch (Exception e)

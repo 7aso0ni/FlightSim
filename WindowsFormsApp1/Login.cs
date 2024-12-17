@@ -37,48 +37,57 @@ namespace WindowsFormsApp1
             string password = PasswordTextBox.Text;
 
             // validate the user credentials and return the role of the logged in user
-            String userRole = ValidateLogin(username.Trim(), password.Trim());
+            Traveler user = ValidateLogin(username.Trim(), password.Trim());
 
-            if (userRole != null)
+            if (user != null)
             {
-                MessageBox.Show("Welcome " + userRole);
+                MessageBox.Show("Welcome " + user.Username);
+            } else
+            {
+                MessageBox.Show("An Error Occured");
+                return;
             }
 
             // navigate into the respective home page based on the user role
-            switch (userRole)
+            switch (user.Role)
             {
                 case "admin":
                     this.Hide();
                     AdminHome admin = new AdminHome();
-                    admin.Show();
+                    admin.ShowDialog();
                     this.Show();
                     break;
                 case "employer":
                     this.Hide();
                     EmployerHome emp = new EmployerHome();
-                    emp.Show();
+                    emp.ShowDialog();
                     this.Show();
                     break;
                 case "traveler":
                     this.Hide();
                     TravelerHome trv = new TravelerHome();
-                    trv.Show();
+                    trv.ShowDialog();
                     this.Show();
                     break;
             }
         }
 
-        private String ValidateLogin(string username, string password)
+        private Traveler ValidateLogin(string username, string password)
         {
-            String userRole = "";
-
+            Traveler traveler = null;
             SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\source\\repos\\WindowsFormsApp1\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "SELECT * FROM [dbo].[User] WHERE username = @username AND password = @password";
+            cmd.CommandText = @"
+                SELECT t.id, u.username, u.password, u.email, u.role, 
+                       t.name, t.passport_number, t.age
+                FROM [dbo].[User] u
+                LEFT JOIN [dbo].[Traveler] t ON u.id = t.user_id
+                WHERE u.username = @username AND u.password = @password";
+
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
 
@@ -90,8 +99,21 @@ namespace WindowsFormsApp1
                 // check if data was returned
                 if (reader.Read())
                 {
-                   userRole = reader["role"].ToString();
-                } else
+                        traveler = new Traveler(
+                         Convert.ToInt32(reader["id"]),
+                         reader["username"].ToString(),
+                         reader["password"].ToString(),
+                         reader["email"].ToString(),
+                         reader["role"].ToString(),
+                         reader["name"].ToString(),
+                         Convert.ToInt32(reader["passport_number"]),
+                         Convert.ToInt32(reader["age"])
+                     );
+
+                        Console.WriteLine(traveler.Id);
+
+                        Traveler.TravelerInstance = traveler;
+                    } else
                 {
                     MessageBox.Show("User does not exist");
                     return null;
@@ -100,7 +122,7 @@ namespace WindowsFormsApp1
 
             // close the connection
             conn.Close();
-            return userRole;
+            return traveler;
             } catch (Exception e)
             {
                 MessageBox.Show(e.Message);
