@@ -74,7 +74,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FlightDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="models\Flight.cs" />
+    <Compile Include="EmployerReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployerReservation.Designer.cs">
+      <DependentUpon>EmployerReservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="TravelerPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +124,9 @@
     </Compile>
     <EmbeddedResource Include="EmployerHome.resx">
       <DependentUpon>EmployerHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployerReservation.resx">
+      <DependentUpon>EmployerReservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
