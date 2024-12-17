@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,38 +28,35 @@ namespace WindowsFormsApp1
             emailField.Text = traveler.Email;
 
             fetchCardDetails(traveler.Id);
-
         }
 
         private void fetchCardDetails(int travelerID)
         {
             try
             {
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                conn.Open();
 
-            conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM [dbo].[Traveler_Payment] WHERE traveler_id = @traveler_id";
+                cmd.Parameters.AddWithValue("@traveler_id", travelerID);
 
-            cmd.CommandText = "SELECT * FROM [dbo].[Traveler_Payment] WHERE traveler_id = @traveler_id";
-            cmd.Parameters.AddWithValue("@traveler_id", travelerID);
-            
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    cardNumberField.Text = reader["card_number"].ToString();
-                    cardNameField.Text = reader["card_name"].ToString();
+                    if (reader.Read())
+                    {
+                        cardNumberField.Text = reader["card_number"].ToString();
+                        cardNameField.Text = reader["card_name"].ToString();
 
-                    DateTime expirationDate = Convert.ToDateTime(reader["expiration_date"]);
-                    expiryDateField.Text = expirationDate.ToString("dd/MM/yyyy"); // Formats date without time
-                    cvvField.Text = reader["cvv"].ToString();
+                        DateTime expirationDate = Convert.ToDateTime(reader["expiration_date"]);
+                        expiryDateField.Text = expirationDate.ToString("dd/MM/yyyy"); // Formats date without time
+                        cvvField.Text = reader["cvv"].ToString();
+                    }
                 }
-            }
 
-            conn.Close();
-
+                conn.Close();
             }
             catch (Exception e)
             {
@@ -69,39 +66,35 @@ namespace WindowsFormsApp1
 
         private void label4_Click(object sender, EventArgs e)
         {
-
         }
 
         private void cvvField_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void updatePayment_Click(object sender, EventArgs e)
         {
-
             try
             {
+                // Check if the user has already entered the payment details
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
 
-            // check if the user has already entered the payment details
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
-            conn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM [dbo].[Traveler_Payment] WHERE traveler_id = @traveler_id";
+                cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.Id);
 
-            cmd.CommandText = "SELECT * FROM [dbo].[Traveler_Payment] WHERE traveler_id = @traveler_id";
-            cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.Id);
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    // check if the user has already entered the payment details if yes update the payment details otherwise insert the payment details
+                    // Check if the user has already entered the payment details
                     if (reader.Read())
                     {
                         // Close the reader before executing a new command
                         reader.Close();
                         cmd.Parameters.Clear();
 
-                        // update the payment details
+                        // Update the payment details
                         cmd.CommandText = "UPDATE [dbo].[Traveler_Payment] SET card_number = @card_number, card_name = @card_name, expiration_date = @expiry_date, cvv = @cvv WHERE traveler_id = @traveler_id";
                         cmd.Parameters.AddWithValue("@card_number", cardNumberField.Text);
                         cmd.Parameters.AddWithValue("@card_name", cardNameField.Text);
@@ -116,8 +109,7 @@ namespace WindowsFormsApp1
                         reader.Close();
                         cmd.Parameters.Clear();
 
-
-                        // insert the payment details
+                        // Insert the payment details
                         cmd.CommandText = "INSERT INTO [dbo].[Traveler_Payment] (card_number, card_name, expiration_date, cvv, traveler_id) VALUES (@card_number, @card_name, @expiry_date, @cvv, @traveler_id)";
                         cmd.Parameters.AddWithValue("@card_number", cardNumberField.Text);
                         cmd.Parameters.AddWithValue("@card_name", cardNameField.Text);
@@ -130,7 +122,6 @@ namespace WindowsFormsApp1
 
                 MessageBox.Show("Payment details updated successfully.");
                 conn.Close();
-
             }
             catch (Exception ex)
             {
