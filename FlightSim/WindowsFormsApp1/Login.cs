@@ -100,11 +100,11 @@ namespace WindowsFormsApp1
                 if (reader.Read())
                 {
                         user = new User(
-                         Convert.ToInt32(reader["id"]),
-                         reader["username"].ToString(),
-                         reader["password"].ToString(),
-                         reader["email"].ToString(),
-                         reader["role"].ToString()
+                    !reader.IsDBNull(reader.GetOrdinal("id")) ? Convert.ToInt32(reader["id"]) : 0,
+                    !reader.IsDBNull(reader.GetOrdinal("username")) ? reader["username"].ToString() : "",
+                    !reader.IsDBNull(reader.GetOrdinal("password")) ? reader["password"].ToString() : "",
+                    !reader.IsDBNull(reader.GetOrdinal("email")) ? reader["email"].ToString() : "",
+                    !reader.IsDBNull(reader.GetOrdinal("role")) ? reader["role"].ToString() : ""
                      );
 
                     } else

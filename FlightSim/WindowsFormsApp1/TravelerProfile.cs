@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             passportField.Text = traveler.PassportNumber.ToString();
             emailField.Text = traveler.Email;
 
-            fetchCardDetails(traveler.Id);
+            fetchCardDetails(traveler.TravelerId);
         }
 
         private void fetchCardDetails(int travelerID)
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
                 cmd.Connection = conn;
 
                 cmd.CommandText = "SELECT * FROM [dbo].[Traveler_Payment] WHERE traveler_id = @traveler_id";
-                cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.Id);
+                cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.TravelerId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -100,7 +100,7 @@ namespace WindowsFormsApp1
                         cmd.Parameters.AddWithValue("@card_name", cardNameField.Text);
                         cmd.Parameters.AddWithValue("@expiry_date", expiryDateField.Text);
                         cmd.Parameters.AddWithValue("@cvv", cvvField.Text);
-                        cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.Id);
+                        cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.TravelerId);
                         cmd.ExecuteNonQuery();
                     }
                     else
@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
                         cmd.Parameters.AddWithValue("@card_name", cardNameField.Text);
                         cmd.Parameters.AddWithValue("@expiry_date", expiryDateField.Text);
                         cmd.Parameters.AddWithValue("@cvv", cvvField.Text);
-                        cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.Id);
+                        cmd.Parameters.AddWithValue("@traveler_id", Traveler.TravelerInstance.TravelerId);
                         cmd.ExecuteNonQuery();
                     }
                 }
