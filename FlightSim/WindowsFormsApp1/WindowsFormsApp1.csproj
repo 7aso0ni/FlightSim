@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\PaymentAPI.cs" />
     <Compile Include="EmployerHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,7 +85,7 @@
     <Compile Include="models\Addon.cs" />
     <Compile Include="models\Booking.cs" />
     <Compile Include="models\Flight.cs" />
-    <Compile Include="models\TravelerPayment.cs" />
+    <Compile Include="models\TravelerPaymentModel.cs" />
     <Compile Include="TravelerPayment.cs">
       <SubType>Form</SubType>
     </Compile>

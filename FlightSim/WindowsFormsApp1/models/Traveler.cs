@@ -16,7 +16,7 @@ namespace WindowsFormsApp1.models
         // static instance to have access throughout the enitre application
         private static Traveler travelerInstance;
 
-        public Traveler(int travelerId, string username, string password, string email, string role, string name, int passportNumber, int age) : base(0, username, password, email, role)
+        public Traveler(int travelerId, string username, string password, string email, string role, string name, int passportNumber, int age) : base(username, password, email, role)
         {
             this.travelerId = travelerId;
             this.name = name;

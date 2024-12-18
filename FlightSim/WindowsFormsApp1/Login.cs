@@ -75,18 +75,16 @@ namespace WindowsFormsApp1
         private User ValidateLogin(string username, string password)
         {
             User user = null;
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
             cmd.CommandText = @"
-                SELECT t.id, u.username, u.password, u.email, u.role, 
-                       t.name, t.passport_number, t.age
-                FROM [dbo].[User] u
-                LEFT JOIN [dbo].[Traveler] t ON u.id = t.user_id
-                WHERE u.username = @username AND u.password = @password";
+                SELECT id, username, password, email, role
+                FROM [dbo].[User]
+                WHERE username = @username AND password = @password";
 
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
@@ -99,15 +97,18 @@ namespace WindowsFormsApp1
                 // check if data was returned
                 if (reader.Read())
                 {
-                        user = new User(
-                    !reader.IsDBNull(reader.GetOrdinal("id")) ? Convert.ToInt32(reader["id"]) : 0,
+                     user = new User(
                     !reader.IsDBNull(reader.GetOrdinal("username")) ? reader["username"].ToString() : "",
                     !reader.IsDBNull(reader.GetOrdinal("password")) ? reader["password"].ToString() : "",
                     !reader.IsDBNull(reader.GetOrdinal("email")) ? reader["email"].ToString() : "",
                     !reader.IsDBNull(reader.GetOrdinal("role")) ? reader["role"].ToString() : ""
                      );
 
-                    } else
+                        user.UserId = !reader.IsDBNull(reader.GetOrdinal("id")) ? Convert.ToInt32(reader["id"]) : 0;
+
+
+                    }
+                    else
                 {
                     MessageBox.Show("User does not exist");
                     return null;

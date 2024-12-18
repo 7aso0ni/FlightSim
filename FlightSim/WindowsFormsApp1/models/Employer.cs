@@ -10,7 +10,7 @@ namespace WindowsFormsApp1.models
     {
         private string contactInfo;
 
-        public Employer(string username, string password, string email, string role, string contactInfo) : base(0, username, password, email, role)
+        public Employer(string username, string password, string email, string role, string contactInfo) : base(username, password, email, role)
         {
             this.contactInfo = contactInfo;
         }

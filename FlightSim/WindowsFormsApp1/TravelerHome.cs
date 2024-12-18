@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.models;
 
@@ -21,7 +15,47 @@ namespace WindowsFormsApp1
 
         private void TravelerHome_Load(object sender, EventArgs e)
         {
+            User user = new User();
 
+            // get traveler info from the user id
+            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            cmd.CommandText = @"
+    SELECT t.id, u.username, u.password, u.email, u.role, 
+           t.name, t.passport_number, t.age
+    FROM [dbo].[User] u
+    LEFT JOIN [dbo].[Traveler] t ON u.id = t.user_id
+    WHERE u.id = @UserId";
+
+            cmd.Parameters.AddWithValue("UserId", user.UserId);
+
+
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    Traveler tra = new Traveler(
+                       travelerId: Convert.ToInt32(reader["id"]),
+                       username: reader["username"].ToString(),
+                       password: reader["password"].ToString(),
+                       email: reader["email"].ToString(),
+                       role: reader["role"].ToString(),
+                       name: reader["name"].ToString(),
+                       passportNumber: Convert.ToInt32(reader["passport_number"]),
+                       age: Convert.ToInt32(reader["age"])
+                        );
+
+                    Traveler.TravelerInstance = tra;
+                }
+            }
+
+            conn.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -58,9 +92,9 @@ namespace WindowsFormsApp1
 
             try
             {
-            List<Flight> flights = new List<Flight>();
+                List<Flight> flights = new List<Flight>();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
 
                 conn.Open();
 
@@ -94,24 +128,24 @@ namespace WindowsFormsApp1
                 cmd.Parameters.AddWithValue("@destCountry", destCountry);
 
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    { 
-                        while (reader.Read())
-                        {
-                            Flight flight = new Flight();
-                            flight.Id = reader.GetInt32(reader.GetOrdinal("FlightID"));
-                            flight.DepartureLocationName = reader.GetString(reader.GetOrdinal("DepartureLocation"));
-                            flight.ArrivalLocationName = reader.GetString(reader.GetOrdinal("ArrivalLocation"));
-                            flight.DepartureTime = reader.GetDateTime(reader.GetOrdinal("DepartureTime"));
-                            flight.ArrivalTime = reader.GetDateTime(reader.GetOrdinal("ArrivalTime"));
-                            flight.CategoryName = reader.GetString(reader.GetOrdinal("Category"));
-                            flight.FlightStatusName = reader.GetString(reader.GetOrdinal("FlightStatus"));
-                            flight.AirportName = reader.GetString(reader.GetOrdinal("ArrivalAirport"));
-                            flight.BasePrice = (double)reader.GetDecimal(reader.GetOrdinal("BasePrice"));
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Flight flight = new Flight();
+                        flight.Id = reader.GetInt32(reader.GetOrdinal("FlightID"));
+                        flight.DepartureLocationName = reader.GetString(reader.GetOrdinal("DepartureLocation"));
+                        flight.ArrivalLocationName = reader.GetString(reader.GetOrdinal("ArrivalLocation"));
+                        flight.DepartureTime = reader.GetDateTime(reader.GetOrdinal("DepartureTime"));
+                        flight.ArrivalTime = reader.GetDateTime(reader.GetOrdinal("ArrivalTime"));
+                        flight.CategoryName = reader.GetString(reader.GetOrdinal("Category"));
+                        flight.FlightStatusName = reader.GetString(reader.GetOrdinal("FlightStatus"));
+                        flight.AirportName = reader.GetString(reader.GetOrdinal("ArrivalAirport"));
+                        flight.BasePrice = (double)reader.GetDecimal(reader.GetOrdinal("BasePrice"));
                         MessageBox.Show(flight.ToString());
-                            flights.Add(flight);
-                        }
+                        flights.Add(flight);
                     }
+                }
 
                 if (flights.Count == 0)
                 {

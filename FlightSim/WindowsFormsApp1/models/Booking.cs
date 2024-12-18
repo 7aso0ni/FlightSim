@@ -1,14 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WindowsFormsApp1.models
 {
     internal class Booking
     {
-        private int flight_id;
-        List<Addon> addons;
+        private int flightId;
+        private List<Addon> addons;
+        private double price;
+
+        public Booking(int flight_id, List<Addon> addons, double price)
+        {
+            this.flightId = flight_id;
+            this.addons = addons;
+            this.price = price;
+        }
+
+        public int FlightId { get { return flightId; } set { this.flightId = value; } }
+
+        public List<Addon> Addons { get { return addons; } set { this.addons = value; } }
+        public double Price
+        {
+            get { return price; }
+            set { this.price = value; }
+
+        }
     }
 }

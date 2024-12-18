@@ -9,19 +9,20 @@ namespace WindowsFormsApp1.models
 {
     internal class User
     {
-        protected int userId;
+        protected static int userId;
         protected string username;
         protected string password;
         protected string email;
         protected string role;
 
-        public User(int userId, string username, string password, string email, string role)
+        public User() { }
+
+        public User(string username, string password, string email, string role)
         {
             this.username = username;
             this.password = password;
             this.email = email;
             this.role = role;
-            this.userId = userId;
         }
 
         public string Username { get => username; set => username = value; }

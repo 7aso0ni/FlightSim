@@ -37,11 +37,11 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.cvvTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.expiryDateTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.cardNumberTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.AddonList = new System.Windows.Forms.FlowLayoutPanel();
@@ -102,11 +102,11 @@
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.cvvTextBox);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.expiryDateTextBox);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.cardNumberTextBox);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(12, 193);
             this.groupBox3.Name = "groupBox3";
@@ -144,13 +144,14 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Make payment";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox4
+            // cvvTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(97, 204);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(249, 22);
-            this.textBox4.TabIndex = 11;
+            this.cvvTextBox.Location = new System.Drawing.Point(97, 204);
+            this.cvvTextBox.Name = "cvvTextBox";
+            this.cvvTextBox.Size = new System.Drawing.Size(249, 22);
+            this.cvvTextBox.TabIndex = 11;
             // 
             // label4
             // 
@@ -162,12 +163,12 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "CVV";
             // 
-            // textBox5
+            // expiryDateTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(97, 148);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(249, 22);
-            this.textBox5.TabIndex = 9;
+            this.expiryDateTextBox.Location = new System.Drawing.Point(97, 148);
+            this.expiryDateTextBox.Name = "expiryDateTextBox";
+            this.expiryDateTextBox.Size = new System.Drawing.Size(249, 22);
+            this.expiryDateTextBox.TabIndex = 9;
             // 
             // label5
             // 
@@ -179,12 +180,12 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Expiry Date";
             // 
-            // textBox6
+            // cardNumberTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(97, 93);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(249, 22);
-            this.textBox6.TabIndex = 7;
+            this.cardNumberTextBox.Location = new System.Drawing.Point(97, 93);
+            this.cardNumberTextBox.Name = "cardNumberTextBox";
+            this.cardNumberTextBox.Size = new System.Drawing.Size(249, 22);
+            this.cardNumberTextBox.TabIndex = 7;
             // 
             // label6
             // 
@@ -230,11 +231,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox cvvTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox expiryDateTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox cardNumberTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label8;
