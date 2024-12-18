@@ -12,7 +12,6 @@ namespace WindowsFormsApp1.models
         private string name;
         private int passportNumber;
         private int age;
-        private List<int> passengers = new List<int>();
 
         // static instance to have access throughout the enitre application
         private static Traveler travelerInstance;
@@ -31,7 +30,6 @@ namespace WindowsFormsApp1.models
         public int Age { get => age; set => age = value; }
         public int Id { get => id; set => id = value; }
 
-        public List<int> Passengers { get => passengers; set => passengers = value; }
 
         public static Traveler TravelerInstance { get => travelerInstance; set => travelerInstance = value; }
     }

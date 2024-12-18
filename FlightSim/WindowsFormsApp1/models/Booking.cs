@@ -9,6 +9,6 @@ namespace WindowsFormsApp1.models
     internal class Booking
     {
         private int flight_id;
-        
+        List<Addon> addons;
     }
 }

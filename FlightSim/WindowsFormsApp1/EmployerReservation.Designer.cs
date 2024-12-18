@@ -36,19 +36,17 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -65,7 +63,6 @@
             this.groupBox4.Controls.Add(this.comboBox1);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.numericUpDown1);
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.textBox3);
             this.groupBox4.Controls.Add(this.label3);
@@ -79,7 +76,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(9, 273);
+            this.comboBox2.Location = new System.Drawing.Point(9, 224);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(89, 24);
             this.comboBox2.TabIndex = 15;
@@ -87,7 +84,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 250);
+            this.label11.Location = new System.Drawing.Point(6, 201);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(171, 16);
             this.label11.TabIndex = 14;
@@ -95,7 +92,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(9, 215);
+            this.textBox8.Location = new System.Drawing.Point(9, 166);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(164, 22);
             this.textBox8.TabIndex = 13;
@@ -103,7 +100,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 192);
+            this.label10.Location = new System.Drawing.Point(6, 143);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 16);
             this.label10.TabIndex = 12;
@@ -112,7 +109,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 152);
+            this.comboBox1.Location = new System.Drawing.Point(9, 103);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(89, 24);
             this.comboBox1.TabIndex = 11;
@@ -120,7 +117,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 129);
+            this.label9.Location = new System.Drawing.Point(6, 80);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 16);
             this.label9.TabIndex = 10;
@@ -131,20 +128,12 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 44);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 16);
+            this.label7.Size = new System.Drawing.Size(0, 16);
             this.label7.TabIndex = 9;
-            this.label7.Text = "Number of travelers";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(164, 42);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(76, 22);
-            this.numericUpDown1.TabIndex = 8;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(79, 330);
+            this.button2.Location = new System.Drawing.Point(79, 281);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 26);
             this.button2.TabIndex = 6;
@@ -153,7 +142,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(9, 95);
+            this.textBox3.Location = new System.Drawing.Point(9, 46);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(164, 22);
             this.textBox3.TabIndex = 5;
@@ -161,7 +150,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 72);
+            this.label3.Location = new System.Drawing.Point(6, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 16);
             this.label3.TabIndex = 4;
@@ -198,15 +187,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Booking Confirmation";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(70, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 26);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Generate Receipt";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(70, 31);
@@ -215,6 +195,15 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "Confirm Booking";
             this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(70, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 26);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Generate Receipt";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -249,7 +238,6 @@
             this.Text = "Form1";
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -269,7 +257,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;

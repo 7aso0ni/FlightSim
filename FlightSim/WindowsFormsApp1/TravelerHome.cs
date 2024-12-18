@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
             {
             List<Flight> flights = new List<Flight>();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
 
                 conn.Open();
 
@@ -75,6 +75,7 @@ namespace WindowsFormsApp1
         arrCity.airport_name AS ArrivalAirport,
         f.departure_time AS DepartureTime,
         f.arrival_time AS ArrivalTime,
+        f.base_price AS BasePrice,
         cat.name AS Category,
         fs.status_name AS FlightStatus
         FROM [dbo].[Flight] f
@@ -106,7 +107,8 @@ namespace WindowsFormsApp1
                             flight.CategoryName = reader.GetString(reader.GetOrdinal("Category"));
                             flight.FlightStatusName = reader.GetString(reader.GetOrdinal("FlightStatus"));
                             flight.AirportName = reader.GetString(reader.GetOrdinal("ArrivalAirport"));
-                            MessageBox.Show(flight.ToString());
+                            flight.BasePrice = (double)reader.GetDecimal(reader.GetOrdinal("BasePrice"));
+                        MessageBox.Show(flight.ToString());
                             flights.Add(flight);
                         }
                     }
@@ -152,8 +154,27 @@ namespace WindowsFormsApp1
 
         private void bookFlightButton_Click(object sender, EventArgs e)
         {
-            TravelerPayment tp = new TravelerPayment();
-            tp.ShowDialog();
+            // Ensure a row is selected
+            if (flightDisplay.CurrentRow != null)
+            {
+                try
+                {
+                    // Example: Assume "Price" is a column in your DataGridView
+                    double flightPrice = Convert.ToDouble(flightDisplay.CurrentRow.Cells["BasePrice"].Value);
+
+                    // Pass the price to TravelerPayment form
+                    TravelerPayment tp = new TravelerPayment(flightPrice);
+                    tp.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a flight to book.");
+            }
         }
 
         private void flightDisplay_CellContentClick(object sender, DataGridViewCellEventArgs e)

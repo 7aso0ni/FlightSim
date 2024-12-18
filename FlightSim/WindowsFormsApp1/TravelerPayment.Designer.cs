@@ -44,17 +44,9 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.AddonList = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -122,6 +114,7 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Payment";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // textBox7
             // 
@@ -203,87 +196,19 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Card number";
             // 
-            // button2
+            // AddonList
             // 
-            this.button2.Location = new System.Drawing.Point(68, 253);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 26);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Add Addon";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 48);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 16);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Seat type";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 71);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(89, 24);
-            this.comboBox1.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 111);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 16);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Extra luggage";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(16, 134);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(164, 22);
-            this.textBox8.TabIndex = 13;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 169);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(171, 16);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Add insurance for luggage?";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(16, 192);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(89, 24);
-            this.comboBox2.TabIndex = 15;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.comboBox2);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.textBox8);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Location = new System.Drawing.Point(494, 20);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(264, 515);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Add Travelers";
+            this.AddonList.Location = new System.Drawing.Point(485, 12);
+            this.AddonList.Name = "AddonList";
+            this.AddonList.Size = new System.Drawing.Size(291, 523);
+            this.AddonList.TabIndex = 4;
             // 
             // TravelerPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 559);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.AddonList);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "TravelerPayment";
@@ -293,8 +218,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,13 +239,6 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label8;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.FlowLayoutPanel AddonList;
     }
 }

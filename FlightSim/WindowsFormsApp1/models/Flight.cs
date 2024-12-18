@@ -18,8 +18,9 @@ namespace WindowsFormsApp1.models
             private string categoryName;
             private string flightStatusName;
             private string airportName;
+            private double basePrice;
 
-            public Flight() { }
+        public Flight() { }
 
             // Public Properties
             public int Id
@@ -68,6 +69,12 @@ namespace WindowsFormsApp1.models
         {
             get { return airportName; }
             set { airportName = value; }
+        }
+
+        public double BasePrice
+        {
+            get { return basePrice; }
+            set { basePrice = value; }
         }
     }
 }

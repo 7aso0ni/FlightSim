@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             string password = PasswordTextBox.Text;
 
             // validate the user credentials and return the role of the logged in user
-            Traveler user = ValidateLogin(username.Trim(), password.Trim());
+            User user = ValidateLogin(username.Trim(), password.Trim());
 
             if (user != null)
             {
@@ -72,10 +72,10 @@ namespace WindowsFormsApp1
             }
         }
 
-        private Traveler ValidateLogin(string username, string password)
+        private User ValidateLogin(string username, string password)
         {
-            Traveler traveler = null;
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+            User user = null;
+            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -99,20 +99,14 @@ namespace WindowsFormsApp1
                 // check if data was returned
                 if (reader.Read())
                 {
-                        traveler = new Traveler(
+                        user = new User(
                          Convert.ToInt32(reader["id"]),
                          reader["username"].ToString(),
                          reader["password"].ToString(),
                          reader["email"].ToString(),
-                         reader["role"].ToString(),
-                         reader["name"].ToString(),
-                         Convert.ToInt32(reader["passport_number"]),
-                         Convert.ToInt32(reader["age"])
+                         reader["role"].ToString()
                      );
 
-                        Console.WriteLine(traveler.Id);
-
-                        Traveler.TravelerInstance = traveler;
                     } else
                 {
                     MessageBox.Show("User does not exist");
@@ -122,7 +116,7 @@ namespace WindowsFormsApp1
 
             // close the connection
             conn.Close();
-            return traveler;
+            return user;
             } catch (Exception e)
             {
                 MessageBox.Show(e.Message);
