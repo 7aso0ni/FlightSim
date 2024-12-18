@@ -8,6 +8,8 @@ namespace WindowsFormsApp1
 {
     public partial class TravelerHome : Form
     {
+
+        int flightId;
         public TravelerHome()
         {
             InitializeComponent();
@@ -111,7 +113,7 @@ namespace WindowsFormsApp1
         f.arrival_time AS ArrivalTime,
         f.base_price AS BasePrice,
         cat.name AS Category,
-        fs.status_name AS FlightStatus
+        fs.status_name AS FlightStatus   
         FROM [dbo].[Flight] f
         INNER JOIN [dbo].[City] depCity ON f.departure_location = depCity.id
         INNER JOIN [dbo].[Country] depCountry ON depCity.parent_id = depCountry.id
@@ -133,7 +135,9 @@ namespace WindowsFormsApp1
                     while (reader.Read())
                     {
                         Flight flight = new Flight();
-                        flight.Id = reader.GetInt32(reader.GetOrdinal("FlightID"));
+                        flightId = reader.GetInt32(reader.GetOrdinal("FlightID"));
+
+                        flight.Id = flightId;
                         flight.DepartureLocationName = reader.GetString(reader.GetOrdinal("DepartureLocation"));
                         flight.ArrivalLocationName = reader.GetString(reader.GetOrdinal("ArrivalLocation"));
                         flight.DepartureTime = reader.GetDateTime(reader.GetOrdinal("DepartureTime"));
@@ -197,7 +201,7 @@ namespace WindowsFormsApp1
                     double flightPrice = Convert.ToDouble(flightDisplay.CurrentRow.Cells["BasePrice"].Value);
 
                     // Pass the price to TravelerPayment form
-                    TravelerPayment tp = new TravelerPayment(flightPrice);
+                    TravelerPayment tp = new TravelerPayment(flightPrice, flightId);
                     tp.ShowDialog();
                 }
                 catch (Exception ex)

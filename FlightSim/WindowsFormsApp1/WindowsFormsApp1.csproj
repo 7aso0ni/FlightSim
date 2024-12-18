@@ -83,6 +83,7 @@
       <DependentUpon>EmployerReservation.cs</DependentUpon>
     </Compile>
     <Compile Include="models\Addon.cs" />
+    <Compile Include="models\AddonInfo.cs" />
     <Compile Include="models\Booking.cs" />
     <Compile Include="models\Flight.cs" />
     <Compile Include="models\TravelerPaymentModel.cs" />

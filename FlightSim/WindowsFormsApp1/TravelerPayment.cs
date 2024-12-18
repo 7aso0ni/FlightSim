@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using WindowsFormsApp1.api;
@@ -10,10 +11,15 @@ namespace WindowsFormsApp1
     {
 
         double flightPrice;
-        public TravelerPayment(double flightPrice)
+        int flightID;
+
+        List<int> selectedAddons = new List<int>();
+
+        public TravelerPayment(double flightPrice, int flightId)
         {
             InitializeComponent();
             this.flightPrice = flightPrice;
+            this.flightID = flightId;
         }
 
 
@@ -80,8 +86,12 @@ namespace WindowsFormsApp1
                         CheckBox checkBox = new CheckBox();
                         checkBox.Text = $"{reader["name"].ToString()} - ${reader["price"]}";
 
-                        // storing the price for easy access later
-                        checkBox.Tag = reader["price"];
+                        // Storing the addonId and price for easy access later
+                        checkBox.Tag =
+                            Convert.ToDouble(reader["price"]);
+                        selectedAddons.Add(Convert.ToInt32(reader["id"]));
+
+
                         checkBox.AutoSize = true;
 
                         // Subscribe to the CheckedChanged event
@@ -147,7 +157,7 @@ namespace WindowsFormsApp1
             {
                 if (control is CheckBox checkBox && checkBox.Checked)
                 {
-                    // Retrieve the price from the Tag property and add to the total
+
                     totalAddonsPrice += Convert.ToDouble(checkBox.Tag);
                 }
             }
@@ -160,28 +170,68 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             PaymentAPI api = new PaymentAPI();
+
             string cardNumber = cardNumberTextBox.Text;
             string expiryDate = expiryDateTextBox.Text;
             string cvv = cvvTextBox.Text;
-            bool isSucccess = api.ProcessPayment(cardNumber, expiryDate, cvv, flightPrice);
 
-            if (isSucccess)
+            bool isSuccess = api.ProcessPayment(cardNumber, expiryDate, cvv, flightPrice);
+
+            if (isSuccess)
             {
-                MessageBox.Show("Payment successful");
+                try
+                {
+                    int bookingId;
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                    // Connect to the database
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                    {
+                        conn.Open();
 
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
+                        // Insert into the Booking table and retrieve the Booking ID
+                        using (SqlCommand cmd = new SqlCommand(@"
+                    INSERT INTO [dbo].[Booking] (flight_id, user_id, booking_date, price, booking_status)
+                    VALUES (@flightId, @userId, @bookingDate, @price, @bookingStatus); 
+                    SELECT SCOPE_IDENTITY();", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@flightId", flightID);
+                            cmd.Parameters.AddWithValue("@userId", Traveler.TravelerInstance.UserId);
+                            cmd.Parameters.AddWithValue("@bookingDate", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@price", flightPrice);
+                            cmd.Parameters.AddWithValue("@bookingStatus", 1);
 
-                cmd.CommandText = @"
-            INSERT INTO [dbo].[Booking] (flight_id, user_id, booking_date, price, booking_status)
-            VALUES (@flightId, @userId, @bookingDate, @price, @bookingStatus)";
+                            bookingId = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
 
-                conn.Close();
+                        // Insert into the Booking_Addon table for each selected addon
+                        using (SqlCommand addonCmd = new SqlCommand(@"
+                    INSERT INTO [dbo].[Booking_Addon] (booking_id, addon_id)
+                    VALUES (@bookingId, @addonId)", conn))
+                        {
+                            // Add parameters once and update their values for each addon
+                            addonCmd.Parameters.Add("@bookingId", System.Data.SqlDbType.Int);
+                            addonCmd.Parameters.Add("@addonId", System.Data.SqlDbType.Int);
+
+                            foreach (int addonId in selectedAddons)
+                            {
+                                addonCmd.Parameters["@bookingId"].Value = bookingId;
+                                addonCmd.Parameters["@addonId"].Value = addonId;
+                                addonCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Flight booked successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
+            else
+            {
+                MessageBox.Show("Payment failed. Please check your card details and try again.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
