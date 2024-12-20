@@ -65,28 +65,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\PaymentAPI.cs" />
-    <Compile Include="EmployerHome.cs">
+    <Compile Include="Chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployerHome.Designer.cs">
-      <DependentUpon>EmployerHome.cs</DependentUpon>
+    <Compile Include="Chat.Designer.cs">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeHome.Designer.cs">
+      <DependentUpon>EmployeeHome.cs</DependentUpon>
     </Compile>
     <Compile Include="FlightDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FlightDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EmployerReservation.cs">
+    <Compile Include="EmployeeReservation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployerReservation.Designer.cs">
-      <DependentUpon>EmployerReservation.cs</DependentUpon>
+    <Compile Include="EmployeeReservation.Designer.cs">
+      <DependentUpon>EmployeeReservation.cs</DependentUpon>
     </Compile>
     <Compile Include="models\Addon.cs" />
     <Compile Include="models\AddonInfo.cs" />
     <Compile Include="models\Booking.cs" />
     <Compile Include="models\Flight.cs" />
     <Compile Include="models\TravelerPaymentModel.cs" />
+    <Compile Include="TravelerBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TravelerBooking.Designer.cs">
+      <DependentUpon>TravelerBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="TravelerPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,7 +123,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="models\Employer.cs" />
+    <Compile Include="models\Employee.cs" />
     <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,14 +147,23 @@
     <Compile Include="TravelerHome.Designer.cs">
       <DependentUpon>TravelerHome.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EmployerHome.resx">
-      <DependentUpon>EmployerHome.cs</DependentUpon>
+    <EmbeddedResource Include="Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployerReservation.resx">
-      <DependentUpon>EmployerReservation.cs</DependentUpon>
+    <EmbeddedResource Include="CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeHome.resx">
+      <DependentUpon>EmployeeHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeReservation.resx">
+      <DependentUpon>EmployeeReservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TravelerBooking.resx">
+      <DependentUpon>TravelerBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TravelerPayment.resx">
       <DependentUpon>TravelerPayment.cs</DependentUpon>

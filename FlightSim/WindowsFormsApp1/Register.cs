@@ -53,7 +53,6 @@ namespace WindowsFormsApp1
             String email = EmailTextBox.Text;
             String name = NameTextBox.Text;
             int passportNumber;
-            int phoneNumber;
             int age;
 
             // convert the passport number, phone number and age to integer, if not successfull show an error message
@@ -63,11 +62,6 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            if (!int.TryParse(PhoneNumberTextBox.Text, out phoneNumber))
-            {
-                MessageBox.Show("Invalid phone number. Please enter a valid number.");
-                return;
-            }
 
             if (!int.TryParse(AgeTextBox.Text, out age))
             {
@@ -99,7 +93,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
                 conn.Open();
                    
                 SqlCommand cmd = new SqlCommand();

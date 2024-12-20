@@ -233,5 +233,10 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Payment failed. Please check your card details and try again.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void AddonList_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

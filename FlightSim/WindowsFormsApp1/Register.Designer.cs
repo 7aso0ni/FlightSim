@@ -39,7 +39,6 @@
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.PassportNumberTextBox = new System.Windows.Forms.TextBox();
-            this.PhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -141,13 +140,6 @@
             this.PassportNumberTextBox.Size = new System.Drawing.Size(188, 22);
             this.PassportNumberTextBox.TabIndex = 2;
             // 
-            // PhoneNumberTextBox
-            // 
-            this.PhoneNumberTextBox.Location = new System.Drawing.Point(348, 312);
-            this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
-            this.PhoneNumberTextBox.Size = new System.Drawing.Size(188, 22);
-            this.PhoneNumberTextBox.TabIndex = 2;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -162,9 +154,8 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(345, 293);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 16);
+            this.label8.Size = new System.Drawing.Size(0, 16);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Phone Number";
             // 
             // button1
             // 
@@ -203,7 +194,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(345, 345);
+            this.label10.Location = new System.Drawing.Point(345, 300);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(32, 16);
             this.label10.TabIndex = 3;
@@ -211,7 +202,7 @@
             // 
             // AgeTextBox
             // 
-            this.AgeTextBox.Location = new System.Drawing.Point(348, 364);
+            this.AgeTextBox.Location = new System.Drawing.Point(348, 319);
             this.AgeTextBox.Name = "AgeTextBox";
             this.AgeTextBox.Size = new System.Drawing.Size(188, 22);
             this.AgeTextBox.TabIndex = 2;
@@ -234,7 +225,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.AgeTextBox);
-            this.Controls.Add(this.PhoneNumberTextBox);
             this.Controls.Add(this.PassportNumberTextBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.PasswordTextBox);
@@ -262,7 +252,6 @@
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox PassportNumberTextBox;
-        private System.Windows.Forms.TextBox PhoneNumberTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;

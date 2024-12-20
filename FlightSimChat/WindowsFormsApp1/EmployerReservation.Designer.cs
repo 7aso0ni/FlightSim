@@ -35,7 +35,6 @@
             this.priorityaddOn = new System.Windows.Forms.CheckBox();
             this.insuranceaddOn = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.seatTypeCombo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.addTravelerButton = new System.Windows.Forms.Button();
@@ -64,7 +63,6 @@
             this.groupBox4.Controls.Add(this.priorityaddOn);
             this.groupBox4.Controls.Add(this.insuranceaddOn);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.seatTypeCombo);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.addTravelerButton);
@@ -80,7 +78,7 @@
             // mealsaddOn
             // 
             this.mealsaddOn.AutoSize = true;
-            this.mealsaddOn.Location = new System.Drawing.Point(9, 241);
+            this.mealsaddOn.Location = new System.Drawing.Point(15, 180);
             this.mealsaddOn.Name = "mealsaddOn";
             this.mealsaddOn.Size = new System.Drawing.Size(114, 20);
             this.mealsaddOn.TabIndex = 20;
@@ -91,7 +89,7 @@
             // selectionaddOn
             // 
             this.selectionaddOn.AutoSize = true;
-            this.selectionaddOn.Location = new System.Drawing.Point(9, 267);
+            this.selectionaddOn.Location = new System.Drawing.Point(15, 206);
             this.selectionaddOn.Name = "selectionaddOn";
             this.selectionaddOn.Size = new System.Drawing.Size(164, 20);
             this.selectionaddOn.TabIndex = 19;
@@ -102,7 +100,7 @@
             // baggageaddOn
             // 
             this.baggageaddOn.AutoSize = true;
-            this.baggageaddOn.Location = new System.Drawing.Point(9, 215);
+            this.baggageaddOn.Location = new System.Drawing.Point(15, 154);
             this.baggageaddOn.Name = "baggageaddOn";
             this.baggageaddOn.Size = new System.Drawing.Size(167, 20);
             this.baggageaddOn.TabIndex = 18;
@@ -113,7 +111,7 @@
             // priorityaddOn
             // 
             this.priorityaddOn.AutoSize = true;
-            this.priorityaddOn.Location = new System.Drawing.Point(9, 192);
+            this.priorityaddOn.Location = new System.Drawing.Point(15, 131);
             this.priorityaddOn.Name = "priorityaddOn";
             this.priorityaddOn.Size = new System.Drawing.Size(176, 20);
             this.priorityaddOn.TabIndex = 17;
@@ -124,7 +122,7 @@
             // insuranceaddOn
             // 
             this.insuranceaddOn.AutoSize = true;
-            this.insuranceaddOn.Location = new System.Drawing.Point(9, 166);
+            this.insuranceaddOn.Location = new System.Drawing.Point(15, 105);
             this.insuranceaddOn.Name = "insuranceaddOn";
             this.insuranceaddOn.Size = new System.Drawing.Size(177, 20);
             this.insuranceaddOn.TabIndex = 16;
@@ -135,29 +133,19 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 143);
+            this.label10.Location = new System.Drawing.Point(12, 82);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 16);
             this.label10.TabIndex = 12;
             this.label10.Text = "Add Ons";
-            // 
-            // seatTypeCombo
-            // 
-            this.seatTypeCombo.FormattingEnabled = true;
-            this.seatTypeCombo.Location = new System.Drawing.Point(9, 103);
-            this.seatTypeCombo.Name = "seatTypeCombo";
-            this.seatTypeCombo.Size = new System.Drawing.Size(89, 24);
-            this.seatTypeCombo.TabIndex = 11;
-            this.seatTypeCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 80);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 16);
+            this.label9.Size = new System.Drawing.Size(0, 16);
             this.label9.TabIndex = 10;
-            this.label9.Text = "Seat type";
             // 
             // label7
             // 
@@ -293,7 +281,6 @@
 
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox seatTypeCombo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button addTravelerButton;

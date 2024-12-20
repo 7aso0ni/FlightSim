@@ -203,6 +203,7 @@
             this.AddonList.Name = "AddonList";
             this.AddonList.Size = new System.Drawing.Size(291, 523);
             this.AddonList.TabIndex = 4;
+            this.AddonList.Paint += new System.Windows.Forms.PaintEventHandler(this.AddonList_Paint);
             // 
             // TravelerPayment
             // 

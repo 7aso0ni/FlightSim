@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.models;
 
 namespace WindowsFormsApp1
 {
     public partial class AdminHome : Form
     {
-        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Administrator\\source\\repos\\7aso0ni\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
+        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public AdminHome()
         {
             InitializeComponent();
@@ -107,12 +108,23 @@ namespace WindowsFormsApp1
                         MessageBox.Show("Error: " + ex.Message);
                     }
                 }
+
+                // store the action performed in the database
+                query = "INSERT INTO [dbo].[SystemLog] (admin_id, timestamp, action) VALUES (@adminID, @timestamp, @action)";
+                using (SqlCommand com = new SqlCommand(query, connection))
+                {
+                    User user = new User();
+                    com.Parameters.AddWithValue("adminID", user.UserId);
+                    com.Parameters.AddWithValue("timestamp", DateTime.Now);
+                    com.Parameters.AddWithValue("action", "add flight");
+                }
+                connection.Close();
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Database backup performed");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -165,6 +177,18 @@ namespace WindowsFormsApp1
                         command.Parameters.AddWithValue("@flightId", flightId);
                         command.ExecuteNonQuery();
                     }
+
+                    // store the action performed in the database
+                    query = "INSERT INTO [dbo].[SystemLog] (admin_id, timestamp, action) VALUES (@adminID, @timestamp, @action)";
+                    using (SqlCommand com = new SqlCommand(query, connection))
+                    {
+                        User user = new User();
+                        com.Parameters.AddWithValue("adminID", user.UserId);
+                        com.Parameters.AddWithValue("timestamp", DateTime.Now);
+                        com.Parameters.AddWithValue("action", "updated flight");
+                    }
+
+                    connection.Close();
                 }
 
                 // Reload data to reflect the changes
@@ -195,6 +219,18 @@ namespace WindowsFormsApp1
                         command.Parameters.AddWithValue("@flightId", flightId);
                         command.ExecuteNonQuery();
                     }
+
+                    // store the action performed in the database
+                    query = "INSERT INTO [dbo].[SystemLog] (admin_id, timestamp, action) VALUES (@adminID, @timestamp, @action)";
+                    using (SqlCommand com = new SqlCommand(query, connection))
+                    {
+                        User user = new User();
+                        com.Parameters.AddWithValue("adminID", user.UserId);
+                        com.Parameters.AddWithValue("timestamp", DateTime.Now);
+                        com.Parameters.AddWithValue("action", "delete flight");
+                    }
+
+                    connection.Close();
                 }
 
                 // Reload data to reflect the changes
@@ -212,9 +248,6 @@ namespace WindowsFormsApp1
         {
             switch (categoryName)
             {
-                case "Economy": return 1; // Replace with ID
-                case "Business": return 2; // Replace with ID
-                case "First Class": return 3; // Replace with ID
                 case "Domestic": return 4; // Replace with ID
                 case "International": return 5; // Replace with ID
                 default: return 0; // Invalid category
@@ -245,6 +278,40 @@ namespace WindowsFormsApp1
                 object result = command.ExecuteScalar();
                 return result != null ? (int)result : 0; // Return 0 if not found
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Chat chat = new Chat();
+            chat.ShowDialog();
+        }
+
+        private void AdminHome_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            CreateUser createUser = new CreateUser("Admin");
+            createUser.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            CreateUser createUser = new CreateUser("Employee");
+            createUser.ShowDialog();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            TravelerBooking travelerBooking = new TravelerBooking();
+            travelerBooking.ShowDialog();
         }
     }
 }

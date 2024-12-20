@@ -19,7 +19,11 @@ namespace WindowsFormsApp1
         {
             User user = new User();
 
-            // get traveler info from the user id
+             List<Flight> flights = GetAllFlights();
+
+            flightDisplay.DataSource = flights;
+
+
             SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
 
             conn.Open();
@@ -27,6 +31,7 @@ namespace WindowsFormsApp1
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
+            // get traveler info from the user id
             cmd.CommandText = @"
     SELECT t.id, u.username, u.password, u.email, u.role, 
            t.name, t.passport_number, t.age
@@ -53,6 +58,7 @@ namespace WindowsFormsApp1
                        age: Convert.ToInt32(reader["age"])
                         );
 
+                    // save the traveler instance to access later
                     Traveler.TravelerInstance = tra;
                 }
             }
@@ -74,8 +80,16 @@ namespace WindowsFormsApp1
         {
             string depLocation = depLocationTextBox.Text;
             string destLocation = desLocationTextBox.Text;
+            List<Flight> flights = new List<Flight>();
 
-            List<Flight> flights = SearchFlights(depLocation.ToLower().Trim(), destLocation.ToLower().Trim());
+            // if nothing was inputed get all flights
+            if (depLocation.Trim() == "" && destLocation.Trim() == "")
+            {
+                flights = GetAllFlights();
+            } else
+            {
+                flights = SearchFlights(depLocation.ToLower().Trim(), destLocation.ToLower().Trim());
+            }
 
             if (flights == null)
             {
@@ -123,7 +137,6 @@ namespace WindowsFormsApp1
         INNER JOIN [dbo].[FlightStatus] fs ON f.flight_status = fs.id
         WHERE depCountry.name = @depCountry AND arrCountry.name = @destCountry";
 
-                Console.WriteLine(cmd.CommandText);
 
                 // Add parameters
                 cmd.Parameters.AddWithValue("@depCountry", depCountry);
@@ -146,7 +159,6 @@ namespace WindowsFormsApp1
                         flight.FlightStatusName = reader.GetString(reader.GetOrdinal("FlightStatus"));
                         flight.AirportName = reader.GetString(reader.GetOrdinal("ArrivalAirport"));
                         flight.BasePrice = (double)reader.GetDecimal(reader.GetOrdinal("BasePrice"));
-                        MessageBox.Show(flight.ToString());
                         flights.Add(flight);
                     }
                 }
@@ -165,6 +177,76 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(e.Message);
                 Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        private List<Flight> GetAllFlights()
+        {
+            try
+            {
+                List<Flight> flights = new List<Flight>();
+
+                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                cmd.CommandText = @"
+        SELECT 
+        f.id AS FlightID,
+        depCity.name AS DepartureLocation,
+        arrCity.name AS ArrivalLocation,
+        arrCity.airport_name AS ArrivalAirport,
+        f.departure_time AS DepartureTime,
+        f.arrival_time AS ArrivalTime,
+        f.base_price AS BasePrice,
+        cat.name AS Category,
+        fs.status_name AS FlightStatus   
+        FROM [dbo].[Flight] f
+        INNER JOIN [dbo].[City] depCity ON f.departure_location = depCity.id
+        INNER JOIN [dbo].[Country] depCountry ON depCity.parent_id = depCountry.id
+        INNER JOIN [dbo].[City] arrCity ON f.arrival_location = arrCity.id
+        INNER JOIN [dbo].[Country] arrCountry ON arrCity.parent_id = arrCountry.id
+        INNER JOIN [dbo].[Category] cat ON f.category_id = cat.id
+        INNER JOIN [dbo].[FlightStatus] fs ON f.flight_status = fs.id
+       ";
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Flight flight = new Flight();
+                        flightId = reader.GetInt32(reader.GetOrdinal("FlightID"));
+
+                        flight.Id = flightId;
+                        flight.DepartureLocationName = reader.GetString(reader.GetOrdinal("DepartureLocation"));
+                        flight.ArrivalLocationName = reader.GetString(reader.GetOrdinal("ArrivalLocation"));
+                        flight.DepartureTime = reader.GetDateTime(reader.GetOrdinal("DepartureTime"));
+                        flight.ArrivalTime = reader.GetDateTime(reader.GetOrdinal("ArrivalTime"));
+                        flight.CategoryName = reader.GetString(reader.GetOrdinal("Category"));
+                        flight.FlightStatusName = reader.GetString(reader.GetOrdinal("FlightStatus"));
+                        flight.AirportName = reader.GetString(reader.GetOrdinal("ArrivalAirport"));
+                        flight.BasePrice = (double)reader.GetDecimal(reader.GetOrdinal("BasePrice"));
+                        flights.Add(flight);
+                    }
+                }
+
+                if (flights.Count == 0)
+                {
+                    MessageBox.Show("No flights found");
+                }
+
+
+                conn.Close();
+
+                return flights;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e.Message}");
                 return null;
             }
         }
@@ -218,6 +300,12 @@ namespace WindowsFormsApp1
         private void flightDisplay_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Chat chat = new Chat();
+            chat.ShowDialog();
         }
     }
 }

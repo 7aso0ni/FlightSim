@@ -7,6 +7,7 @@ namespace WindowsFormsApp1.models
         private int flightId;
         private List<Addon> addons;
         private double price;
+        private bool isServiceEnabled;
 
         public Booking(int flight_id, List<Addon> addons, double price)
         {
@@ -23,6 +24,12 @@ namespace WindowsFormsApp1.models
             get { return price; }
             set { this.price = value; }
 
+        }
+
+        public bool IsServiceEnabled
+        {
+            get { return isServiceEnabled; }
+            set { this.isServiceEnabled = value; }
         }
     }
 }

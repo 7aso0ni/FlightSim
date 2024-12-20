@@ -57,9 +57,9 @@ namespace WindowsFormsApp1
                     admin.ShowDialog();
                     this.Show();
                     break;
-                case "employer":
+                case "employee":
                     this.Hide();
-                    EmployerHome emp = new EmployerHome();
+                    EmployeeHome emp = new EmployeeHome();
                     emp.ShowDialog();
                     this.Show();
                     break;
@@ -75,7 +75,7 @@ namespace WindowsFormsApp1
         private User ValidateLogin(string username, string password)
         {
             User user = null;
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Administrator\\source\\repos\\7aso0ni\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
