@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
 {
     public partial class Register : Form
     {
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public Register()
         {
             InitializeComponent();
@@ -93,7 +94,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnection);
                 conn.Open();
                    
                 SqlCommand cmd = new SqlCommand();

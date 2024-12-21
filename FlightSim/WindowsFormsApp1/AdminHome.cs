@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class AdminHome : Form
     {
-        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
+        private readonly string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public AdminHome()
         {
             InitializeComponent();
@@ -312,6 +312,23 @@ namespace WindowsFormsApp1
         {
             TravelerBooking travelerBooking = new TravelerBooking();
             travelerBooking.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            TravelerServices travelerServices = new TravelerServices();
+            travelerServices.ShowDialog();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            UserList userList = new UserList();
+            userList.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

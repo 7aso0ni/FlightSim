@@ -14,6 +14,8 @@ namespace WindowsFormsApp1
 {
     public partial class Chat : Form
     {
+
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public Chat()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace WindowsFormsApp1
             {
                 User user = new User();
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = @"
@@ -66,7 +68,7 @@ namespace WindowsFormsApp1
             try
             {
                 User user = new User();
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = @"
@@ -111,7 +113,7 @@ namespace WindowsFormsApp1
 
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = @"
@@ -141,7 +143,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = "SELECT id FROM [dbo].[User] WHERE username = @username";

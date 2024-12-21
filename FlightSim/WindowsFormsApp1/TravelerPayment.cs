@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 
         double flightPrice;
         int flightID;
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
 
         List<int> selectedAddons = new List<int>();
 
@@ -74,7 +75,7 @@ namespace WindowsFormsApp1
                 // Clear existing checkboxes (if any)
                 AddonList.Controls.Clear();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnection);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
@@ -117,7 +118,7 @@ namespace WindowsFormsApp1
                 // get the traveler data
                 Traveler travelerInfo = Traveler.TravelerInstance;
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnection);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
@@ -169,6 +170,12 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!Traveler.IsPaymentEnabled)
+            {
+                MessageBox.Show("Payment service is disabled");
+                return;
+            }
+
             PaymentAPI api = new PaymentAPI();
 
             string cardNumber = cardNumberTextBox.Text;
@@ -184,7 +191,7 @@ namespace WindowsFormsApp1
                     int bookingId;
 
                     // Connect to the database
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                    using (SqlConnection conn = new SqlConnection(sqlConnection))
                     {
                         conn.Open();
 

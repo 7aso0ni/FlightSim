@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
         private double basePrice = 0;
         double totalPrice = 0;
         private List<Traveler> travelerList = new List<Traveler>();
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         List<int> selectedAddons = new List<int>();
 
         public EmployeeReservation(int selectedFlightID, double flightPrice)
@@ -40,7 +41,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = @"SELECT f.id AS FlightID, depCity.name AS Departure, arrCity.name AS Destination, 
@@ -83,7 +84,7 @@ namespace WindowsFormsApp1
                 // Clear existing checkboxes (if any)
                 AddonList.Controls.Clear();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnection);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
@@ -140,7 +141,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     string query = "SELECT id FROM [dbo].[Traveler] WHERE passport_number = @passportNumber";
@@ -239,7 +240,7 @@ namespace WindowsFormsApp1
             try
             {
                 // Connect to the database to get traveler details
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
 
@@ -309,7 +310,7 @@ namespace WindowsFormsApp1
 
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
                 {
                     conn.Open();
                     SqlTransaction transaction = conn.BeginTransaction(); // Begin transaction

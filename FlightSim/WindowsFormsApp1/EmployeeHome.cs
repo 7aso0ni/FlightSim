@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
     {
         private int selectedFlightID = -1;
         double flightPrice = 0;
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public EmployeeHome()
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace WindowsFormsApp1
 
         private void printToGrid(string query, string dep = "", string dest = "") //method to show data inside the gridview
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30"))
+            using (SqlConnection conn = new SqlConnection(sqlConnection))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -206,6 +207,11 @@ namespace WindowsFormsApp1
         private void dataGridView1_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

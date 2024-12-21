@@ -21,5 +21,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void TravelerBooking_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

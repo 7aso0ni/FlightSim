@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class CreateUser : Form
     {
-
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         string userRole = "";
         public CreateUser(string userRole)
         {
@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
 
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection con = new SqlConnection(sqlConnection);
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand();

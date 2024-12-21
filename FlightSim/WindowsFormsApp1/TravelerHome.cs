@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     public partial class TravelerHome : Form
     {
-
+        private string sqlConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         int flightId;
         public TravelerHome()
         {
@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
             flightDisplay.DataSource = flights;
 
 
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection conn = new SqlConnection(sqlConnectionString);
 
             conn.Open();
 
@@ -110,7 +110,7 @@ namespace WindowsFormsApp1
             {
                 List<Flight> flights = new List<Flight>();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnectionString);
 
                 conn.Open();
 
@@ -187,7 +187,7 @@ namespace WindowsFormsApp1
             {
                 List<Flight> flights = new List<Flight>();
 
-                SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection conn = new SqlConnection(sqlConnectionString);
 
                 conn.Open();
 
@@ -274,6 +274,12 @@ namespace WindowsFormsApp1
 
         private void bookFlightButton_Click(object sender, EventArgs e)
         {
+            if (Traveler.IsBookingEnabled == false)
+            {
+                MessageBox.Show("Booking service is disabled");
+                return;
+            }
+
             // Ensure a row is selected
             if (flightDisplay.CurrentRow != null)
             {
@@ -306,6 +312,11 @@ namespace WindowsFormsApp1
         {
             Chat chat = new Chat();
             chat.ShowDialog();
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

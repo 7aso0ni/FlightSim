@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.profileButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.logout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.flightDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -181,12 +182,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // logout
+            // 
+            this.logout.Location = new System.Drawing.Point(835, 24);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(133, 33);
+            this.logout.TabIndex = 8;
+            this.logout.Text = "Logout";
+            this.logout.UseVisualStyleBackColor = true;
+            this.logout.Click += new System.EventHandler(this.logout_Click);
+            // 
             // TravelerHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 535);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.logout);
             this.Controls.Add(this.profileButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
@@ -219,5 +231,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button profileButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button logout;
     }
 }
