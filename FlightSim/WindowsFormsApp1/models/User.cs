@@ -10,6 +10,7 @@ namespace WindowsFormsApp1.models
     internal class User
     {
         protected static int userId;
+        private int instanceUserId;
         protected string username;
         protected string password;
         protected string email;
@@ -30,6 +31,7 @@ namespace WindowsFormsApp1.models
         public string Email { get => email; set => email = value; }
         public string Role { get => role; set => role = value; }
         public int UserId { get => userId; set => userId = value; }
+        public int InstanceUserID { get => instanceUserId; set => instanceUserId = value; }
 
     }
 }

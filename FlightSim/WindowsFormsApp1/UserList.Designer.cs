@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.flightDBDataSet = new WindowsFormsApp1.FlightDBDataSet();
             this.flightDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.flightDBDataSet = new WindowsFormsApp1.FlightDBDataSet();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,31 +39,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.flightDBDataSetBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(31, 75);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(408, 335);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // flightDBDataSet
-            // 
-            this.flightDBDataSet.DataSetName = "FlightDBDataSet";
-            this.flightDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // flightDBDataSetBindingSource
             // 
             this.flightDBDataSetBindingSource.DataSource = this.flightDBDataSet;
             this.flightDBDataSetBindingSource.Position = 0;
+            // 
+            // flightDBDataSet
+            // 
+            this.flightDBDataSet.DataSetName = "FlightDBDataSet";
+            this.flightDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button3
             // 
@@ -73,6 +72,7 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -82,6 +82,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Modify";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -91,6 +92,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -98,6 +100,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(251, 22);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -134,8 +137,8 @@
             this.Text = "UserList";
             this.Load += new System.EventHandler(this.UserList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flightDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

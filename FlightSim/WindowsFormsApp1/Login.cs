@@ -15,6 +15,8 @@ namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
+
+        private string sqlConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Gaming\\Desktop\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30";
         public Login()
         {
             InitializeComponent();
@@ -75,7 +77,7 @@ namespace WindowsFormsApp1
         private User ValidateLogin(string username, string password)
         {
             User user = null;
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Hussa\\Downloads\\FlightSim\\FlightSim\\FlightSim\\WindowsFormsApp1\\FlightDB.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection conn = new SqlConnection(sqlConnection);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand();
